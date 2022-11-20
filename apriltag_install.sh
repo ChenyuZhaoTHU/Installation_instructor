@@ -16,7 +16,7 @@ cd ..
 #if on jetson, do below first
 sudo gedit /opt/ros/melodic/share/image_geometry/cmake/image_geometryConfig  ,change opencv to opencv4 
 sudo gedit gedit /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake  ,change opencv to opencv4 
-#if not on jetson, ignore up two line
+#if not on jetson, ignore up two lines
 catkin_make
 
 #install usb_cam
