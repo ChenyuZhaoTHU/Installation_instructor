@@ -1,3 +1,4 @@
+-------------------------------------------------------------------
 #install apriltag
 git clone https://github.com/AprilRobotics/apriltag.git
 cd apriltag
@@ -7,6 +8,9 @@ cmake ..
 make -j4
 make install
 
+
+
+-------------------------------------------------------------------
 #install apriltag_ros
 cd
 mkdir -p apriltag_ros/src
@@ -19,6 +23,9 @@ sudo gedit gedit /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake  ,
 #if not on jetson, ignore up two lines
 catkin_make
 
+
+
+-------------------------------------------------------------------
 #install usb_cam
 cd
 mkdir -p usb_cam/src
@@ -36,6 +43,9 @@ cd ..
 cd launch
 roslaunch usb_cam usb_cam-test.launch
 
+
+
+-------------------------------------------------------------------
 #calibrate usb_cam
 sudo apt-get install ros-melodic-camera-calibration #18.04 melodic   20.04 noetic
 roslaunch usb_cam usb_cam-test.launch
@@ -43,6 +53,10 @@ rosrun camera_calibration cameracalibrator.py --size 7x10 --square 0.015 image:=
 
 go to /tmp, find calibrationdata.tar.gz
 find ost.yaml, change its name to head_camera.yaml, and place it under /home/$usrname/.ros/camera_info
+
+
+
+-------------------------------------------------------------------
 
 cd ~/apriltag_ros/src/apriltag_ros/apriltag_ros/config
 gedit settings.yaml
@@ -62,26 +76,24 @@ gedit settings.yaml
 
 
 gedit tags.yaml
-###
-	standalone_tags:
-	  [
-	    {id: 001, size: 0.167, name: tag_1}
-	  ]
+###!!!!! no tabs!!! just spaces!!!!
+standalone_tags:
+    [
+        {id: 001, size: 0.167, name: tag_1}
+    ]
 
 
 
-
-	tag_bundles:
-	  [
-	    {
-	      name: 'tag_1',
-	      layout:
-		[
-		  {id: 001, size: 0.167, x: 0, y: 0, z: 0, qw: 1, qx: 0, qy: 0, qz: 0}
-		]
-	    }
-	  ]
-
+tag_bundles:
+    [
+        {
+          name: 'tag_1',
+          layout:
+        [
+            {id: 001, size: 0.167, x: 0, y: 0, z: 0, qw: 1, qx: 0, qy: 0, qz: 0}
+        ]
+        }
+    ]
 ###
 
 
@@ -89,13 +101,12 @@ gedit tags.yaml
 cd ~/apriltag_ros/src/apriltag_ros/apriltag_ros/launch
 gedit continuous_detection.launch
 ### 
-	<arg name="camera_name" default="/usb_cam" />
-	<arg name="camera_frame" default="usb_cam" />  
+	<arg name="camera_name" default="/usb_cam" /> 
 	<arg name="image_topic" default="image_raw" />
 ###
 
 
-
+-------------------------------------------------------------------
 #start to locate
 source ~/usb_cam/devel/setup.bash
 roslaunch usb_cam usb_cam-test.launch
@@ -104,8 +115,7 @@ roslaunch apriltag_ros continuous_detection.launch
 rqt_image_view
 
 #show locating results
-cd ~/apriltag_ros/
-source devel/setup.bash
+source ~/apriltag_ros/devel/setup.bash
 rostopic echo /tag_detections
 
 
