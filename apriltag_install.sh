@@ -26,7 +26,7 @@ cd usb_cam/src
 git clone https://github.com/bosch-ros-pkg/usb_cam.git
 cd ..
 catkin_make
-source ./devel/setup.bash
+source devel/setup.bash
 cd src/usb_cam
 mkdir build
 cd build
@@ -97,14 +97,15 @@ gedit continuous_detection.launch
 
 
 #start to locate
-
+source ~/usb_cam/devel/setup.bash
 roslaunch usb_cam usb_cam-test.launch
+source ~/apriltag_rosdevel/setup.bash
 roslaunch apriltag_ros continuous_detection.launch
 rqt_image_view
 
 #show locating results
 cd ~/apriltag_ros/
-source /deve/setup.bash
+source devel/setup.bash
 rostopic echo /tag_detections
 
 
