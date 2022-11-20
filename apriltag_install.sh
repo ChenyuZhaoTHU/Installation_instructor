@@ -99,7 +99,7 @@ gedit continuous_detection.launch
 #start to locate
 source ~/usb_cam/devel/setup.bash
 roslaunch usb_cam usb_cam-test.launch
-source ~/apriltag_rosdevel/setup.bash
+source ~/apriltag_ros/devel/setup.bash
 roslaunch apriltag_ros continuous_detection.launch
 rqt_image_view
 
