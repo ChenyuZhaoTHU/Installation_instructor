@@ -18,8 +18,8 @@ cd apriltag_ros/src
 git clone https://github.com/AprilRobotics/apriltag_ros
 cd ..
 #if on jetson, do below first
-sudo gedit /opt/ros/melodic/share/image_geometry/cmake/image_geometryConfig  ,change opencv to opencv4 
-sudo gedit gedit /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake  ,change opencv to opencv4 
+sudo gedit /opt/ros/melodic/share/image_geometry/cmake/image_geometryConfig.cmake  ,change opencv to opencv4, in row 94 and 96.
+sudo gedit /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake  ,change opencv to opencv4, in row 94 and 96.
 #if not on jetson, ignore up two lines
 catkin_make
 
