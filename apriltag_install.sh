@@ -27,6 +27,11 @@ catkin_make
 
 -------------------------------------------------------------------
 #install usb_cam
+# apt install, very easy, recommended
+sudo apt install ros-melodic-usb-cam
+roslaunch usb_cam usb_cam-test.launch
+
+# Or install from source code
 cd
 mkdir -p usb_cam/src
 cd usb_cam/src
