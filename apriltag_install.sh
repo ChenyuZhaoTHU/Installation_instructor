@@ -64,7 +64,7 @@ find ost.yaml, change its name to head_camera.yaml, and place it under /home/$us
 -------------------------------------------------------------------
 
 cd ~/apriltag_ros/src/apriltag_ros/apriltag_ros/config
-gedit settings.yaml
+sudo gedit settings.yaml
 ###
 	tag_family:        'tag36h11' # options: tagStandard52h13, tagStandard41h12, tag36h11, tag25h9, tag16h5, tagCustom48h12, tagCircle21h7, tagCircle49h12  #支持单一标签类型
 	tag_threads:       2          # default: 2           # 设置Tag_Threads允许核心APRILTAG 2算法的某些部分运行并行计算。 典型的多线程优点和限制适用
@@ -80,7 +80,7 @@ gedit settings.yaml
 
 
 
-gedit tags.yaml
+sudo gedit tags.yaml
 ###!!!!! no tabs!!! just spaces!!!!
 standalone_tags:
     [
