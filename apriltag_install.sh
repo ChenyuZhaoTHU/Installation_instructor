@@ -11,7 +11,11 @@ make install
 
 
 -------------------------------------------------------------------
-#install apriltag_ros
+#install apriltag_ros, choose one method
+#easy install
+sudo apt-get install ros-melodic-apriltag-ros  #18.04 melodic   20.04 noetic
+
+#Or build from source
 cd
 mkdir -p apriltag_ros/src
 cd apriltag_ros/src
@@ -54,7 +58,8 @@ roslaunch usb_cam usb_cam-test.launch
 #calibrate usb_cam
 sudo apt-get install ros-melodic-camera-calibration #18.04 melodic   20.04 noetic
 roslaunch usb_cam usb_cam-test.launch
-rosrun camera_calibration cameracalibrator.py --size 7x10 --square 0.015 image:=/usb_cam/image_raw camera:=/usb_cam
+### size is (row-1) x (line-1), --square is the actual edge length of the printed maker square.
+rosrun camera_calibration cameracalibrator.py --size 7x10 --square 0.020 image:=/usb_cam/image_raw camera:=/usb_cam
 
 go to /tmp, find calibrationdata.tar.gz
 find ost.yaml, change its name to head_camera.yaml, and place it under /home/$usrname/.ros/camera_info
@@ -82,6 +87,8 @@ sudo gedit settings.yaml
 
 sudo gedit tags.yaml
 ###!!!!! no tabs!!! just spaces!!!!
+### 'id' is the id of printed marker, which indexed from the apriltag lib, so not random. 0 ro 000, 4 or 004, both are okay.
+### size is the actual edge length of the maker square.
 standalone_tags:
     [
         {id: 001, size: 0.167, name: tag_1}
@@ -113,14 +120,14 @@ gedit continuous_detection.launch
 
 -------------------------------------------------------------------
 #start to locate
-source ~/usb_cam/devel/setup.bash
+source ~/usb_cam/devel/setup.bash #build from source
 roslaunch usb_cam usb_cam-test.launch
-source ~/apriltag_ros/devel/setup.bash
+source ~/apriltag_ros/devel/setup.bash #build from source
 roslaunch apriltag_ros continuous_detection.launch
 rqt_image_view
 
 #show locating results
-source ~/apriltag_ros/devel/setup.bash
+source ~/apriltag_ros/devel/setup.bash #build from source
 rostopic echo /tag_detections
 
 
